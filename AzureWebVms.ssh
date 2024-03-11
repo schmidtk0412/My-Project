@@ -1,6 +1,4 @@
 #!/bin/bash
-#Delete BlueTeam Resource Group 
-az group delete --name BlueTeam
 #Create BlueTeam Resource Group
 az group create --name BlueTeam --location eastus
 #Create Virtual Network
@@ -16,5 +14,5 @@ az vm create --resource-group BlueTeam --name Jump-Box-Provisioner --image Ubunt
 #Create Availability-Set for WebVMs
 az vm availability-set create --resource-group BlueTeam --name BlueTeamAS
 #Create Web VMs 1&2
-az vm create --resource-group BlueTeam --name Web-1 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG --availability-set BlueTeamAS
-az vm create --resource-group BlueTeam --name Web-2 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG --availability-set BlueTeamAS
+az vm create --resource-group BlueTeam --name Web-1 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG
+az vm create --resource-group BlueTeam --name Web-2 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG
