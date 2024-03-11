@@ -1,4 +1,6 @@
-#!/bin/bash 
+#!/bin/bash
+#Delete BlueTeam Resource Group 
+az group delete --name BlueTeam
 #Create BlueTeam Resource Group
 az group create --name BlueTeam --location eastus
 #Create Virtual Network
