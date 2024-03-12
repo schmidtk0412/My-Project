@@ -9,8 +9,9 @@ az network nsg create --resource-group BlueTeam --name BlueTeamNSG
 az network vnet subnet update --resource-group BlueTeam --vnet-name BlueNet --name BlueTeamSubnet --network-security-group BlueTeamNSG
 #Create the security rule
 az network nsg rule create --resource-group BlueTeam --nsg-name BlueTeamNSG --name Default-Deny --priority 4096 --source-address-prefixes '*' --source-port-ranges '*' --destination-address-prefixes '*' --destination-port-ranges '*' --access Deny --protocol Tcp --description "Default Deny Rule."
+az vm availability-set create --resource-group BlueTeam --name BlueTeamAS
 #Create JumpBoxProvisioner
 az vm create --resource-group BlueTeam --name Jump-Box-Provisioner --image Ubuntu2204 --size Standard_B1s --admin-user azureuser --public-ip-sku Standard --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG --generate-ssh-keys
 #Create Web VMs 1&2
-az vm create --resource-group BlueTeam --name Web-1 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG
-az vm create --resource-group BlueTeam --name Web-2 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG
+az vm create --resource-group BlueTeam --name Web-1 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG --availability-set BlueTeamAS
+az vm create --resource-group BlueTeam --name Web-2 --image Ubuntu2204 --size Standard_B1ms --admin-user azureuser --generate-ssh-keys --public-ip-address "" --vnet-name BlueNet --subnet BlueTeamSubnet --nsg BlueTeamNSG --availability-set BlueTeamAS
